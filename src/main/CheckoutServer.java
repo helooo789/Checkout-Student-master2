@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * This class represents a server than handles reservation requests.
@@ -39,6 +40,7 @@ public class CheckoutServer {
      * Regardless of the type of queue you maintain, it should hold elements of type
      * RequestItem.
      */
+    PriorityQueue<RequestItem> requestItemPriorityQueue = new PriorityQueue<>();
 
 
     /**
@@ -64,8 +66,7 @@ public class CheckoutServer {
      * @return Returns true if item was successfully added, false otherwise.
      */
     private synchronized boolean addToQueue(RequestItem item) {
-
-        return false;
+        return requestItemPriorityQueue.add(item);
     }
 
     /**
@@ -78,7 +79,7 @@ public class CheckoutServer {
      */
     private synchronized RequestItem pollFromQueue() {
 
-        return null;
+        return requestItemPriorityQueue.poll();
     }
 
     /**
